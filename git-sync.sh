@@ -35,7 +35,11 @@ else
 fi
 
 # Exclude pulls
-git config --local --add remote.source.fetch '^refs/pull/*'
+git config --local --unset-all remote.source.fetch
+git config --local --add remote.source.fetch '+refs/heads/*:refs/heads/*'
+git config --local --add remote.source.fetch '+refs/tags/*:refs/tags/*'
+git config --local --add remote.source.fetch '+refs/change/*:refs/change/*'
+
 
 # Add destination remote
 git remote add --mirror=push destination "$DESTINATION_REPO"
@@ -44,6 +48,11 @@ if [[ -n "$DESTINATION_SSH_PRIVATE_KEY" ]]; then
   # Push using destination ssh key if provided
   git config --local core.sshCommand "/usr/bin/ssh -i ~/.ssh/dst_rsa"
 fi
+
+git config --local --unset-all remote.destination.push
+git config --local --add remote.destination.push '+refs/heads/*:refs/heads/*'
+git config --local --add remote.destination.push '+refs/tags/*:refs/tags/*'
+git config --local --add remote.destination.push '+refs/change/*:refs/change/*'
 
 echo ">>> Pruning"
 git fetch --prune source
