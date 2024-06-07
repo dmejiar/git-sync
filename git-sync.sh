@@ -42,7 +42,7 @@ if [[ -n "$DESTINATION_SSH_PRIVATE_KEY" ]]; then
 fi
 
 echo ">>> Pruning"
-git fetch --prune origin
+git fetch --prune source
 
 echo ">>> Pushing git changes..."
 git push --mirror destination
