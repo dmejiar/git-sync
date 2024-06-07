@@ -34,12 +34,16 @@ else
   git clone "$SOURCE_REPO" /root/source --origin source --mirror && cd /root/source
 fi
 
-git remote add destination "$DESTINATION_REPO"
+git remote add --mirror=push destination "$DESTINATION_REPO"
 
 if [[ -n "$DESTINATION_SSH_PRIVATE_KEY" ]]; then
   # Push using destination ssh key if provided
   git config --local core.sshCommand "/usr/bin/ssh -i ~/.ssh/dst_rsa"
 fi
 
+echo ">>> Pruning"
+git fetch --prune origin
+
 echo ">>> Pushing git changes..."
-git destination update --prune
+git push --mirror destination
+
