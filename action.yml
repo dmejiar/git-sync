@@ -1,6 +1,6 @@
 name: Git Sync LFS Action
 author: Daniel Mejia-Rodriguez <daniel.mejia@pnnl.gov>
-description: 🔃  Sync between two independent repositories
+description: Sync mirror (destination) with original (source) repo
 branding:
   icon: 'git-branch'
   color: 'gray-dark'
@@ -8,14 +8,8 @@ inputs:
   source_repo:
     description: GitHub repo slug or full url
     required: true
-  source_branch:
-    description: Branch name to sync from
-    required: true
   destination_repo:
     description: GitHub repo slug or full url
-    required: true
-  destination_branch:
-    description: Branch name to sync to
     required: true
   ssh_private_key:
     description: SSH key used to authenticate with source and destination ssh urls provided (optional if public or https url with authentication)
@@ -35,6 +29,4 @@ runs:
     DESTINATION_SSH_PRIVATE_KEY: ${{ inputs.destination_ssh_private_key }}
   args:
     - ${{ inputs.source_repo }}
-    - ${{ inputs.source_branch }}
     - ${{ inputs.destination_repo }}
-    - ${{ inputs.destination_branch }}
