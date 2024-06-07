@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 SOURCE_REPO=$1
 DESTINATION_REPO=$2
 
