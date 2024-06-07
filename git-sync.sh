@@ -52,7 +52,7 @@ echo ">>> Exclude pulls from push..."
 git config --local --unset remote.destination.push
 git config --local --add remote.destination.push '+refs/heads/*:refs/heads/*'
 git config --local --add remote.destination.push '+refs/tags/*:refs/tags/*'
-#git config --local --add remote.destination.push '+refs/changes/*:refs/changes/*'
+git config --local --add remote.destination.push '+refs/changes/*:refs/changes/*'
 
 echo ">>> Pruning"
 git fetch --prune source
