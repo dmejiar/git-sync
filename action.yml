@@ -1,5 +1,5 @@
 name: Git Sync LFS Action
-author: Valtech-SD <us.san_diego_engineering@valtech.com>
+author: Daniel Mejia-Rodriguez <daniel.mejia@pnnl.gov>
 description: 🔃  Sync between two independent repositories
 branding:
   icon: 'git-branch'
