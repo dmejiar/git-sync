@@ -35,10 +35,11 @@ else
 fi
 
 # Exclude pulls
+echo ">>> Exclude pulls from fetch..."
 git config --local --unset-all remote.source.fetch
 git config --local --add remote.source.fetch '+refs/heads/*:refs/heads/*'
 git config --local --add remote.source.fetch '+refs/tags/*:refs/tags/*'
-git config --local --add remote.source.fetch '+refs/change/*:refs/change/*'
+git config --local --add remote.source.fetch '+refs/changes/*:refs/changes/*'
 
 
 # Add destination remote
@@ -49,10 +50,11 @@ if [[ -n "$DESTINATION_SSH_PRIVATE_KEY" ]]; then
   git config --local core.sshCommand "/usr/bin/ssh -i ~/.ssh/dst_rsa"
 fi
 
+echo ">>> Exclude pulls from push..."
 git config --local --unset-all remote.destination.push
 git config --local --add remote.destination.push '+refs/heads/*:refs/heads/*'
 git config --local --add remote.destination.push '+refs/tags/*:refs/tags/*'
-git config --local --add remote.destination.push '+refs/change/*:refs/change/*'
+git config --local --add remote.destination.push '+refs/changes/*:refs/changes/*'
 
 echo ">>> Pruning"
 git fetch --prune source
