@@ -34,6 +34,10 @@ else
   git clone "$SOURCE_REPO" /root/source --origin source --mirror && cd /root/source
 fi
 
+# Exclude pulls
+git config --local --add remote.source.fetch '^refs/pull/*'
+
+# Add destination remote
 git remote add --mirror=push destination "$DESTINATION_REPO"
 
 if [[ -n "$DESTINATION_SSH_PRIVATE_KEY" ]]; then
