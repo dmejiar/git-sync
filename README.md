@@ -30,9 +30,7 @@ jobs:
         uses: dmejiar/git-sync@v1
         with:
           source_repo: "git@github.com:source-org/source-repo.git"
-          source_branch: "${{ github.event.ref }}"
           destination_repo: "git@github.com:destination-org/destination-repo.git"
-          destination_branch: "${{ github.event.ref }}"
           source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }}
           destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
 
